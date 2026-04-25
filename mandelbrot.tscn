@@ -6,8 +6,13 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hh24k"]
 shader = ExtResource("1_hh24k")
 shader_parameter/zoom = 4.0
-shader_parameter/offset_x = 0.43
-shader_parameter/offset_y = 0.381
+shader_parameter/power = 2.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/color1 = Vector4(0.9, 0.3, 0.8, 1)
+shader_parameter/color2 = Vector4(0, 0.8, 0.1, 1)
+shader_parameter/accent = Vector4(0.5, 0, 0.5, 1)
+shader_parameter/accent_intensity = 5.0
+shader_parameter/max_iterations = 100
 
 [node name="Node2D" type="Node2D" unique_id=230819892]
 script = ExtResource("1_mosox")
@@ -15,9 +20,9 @@ script = ExtResource("1_mosox")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1504786073]
 material = SubResource("ShaderMaterial_hh24k")
 offset_left = 200.0
-offset_top = -322.0
+offset_top = -500.0
 offset_right = 240.00002
-offset_bottom = -282.0
+offset_bottom = -460.0
 scale = Vector2(40, 40)
 
 [node name="Control" type="Control" parent="." unique_id=1825050597]
@@ -29,8 +34,168 @@ offset_bottom = 40.0
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2015688686]
 offset_right = 200.0
 offset_bottom = 16.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Zoom" type="HSlider" parent="VBoxContainer" unique_id=1201713169]
+[node name="IterationsLabel" type="Label" parent="VBoxContainer" unique_id=1437591401]
 layout_mode = 2
-max_value = 4.0
+text = "Iterations"
+
+[node name="Iterations" type="HSlider" parent="VBoxContainer" unique_id=744405679]
+layout_mode = 2
+min_value = 10.0
+max_value = 300.0
 step = 0.0
+value = 100.0
+
+[node name="PowerLabel" type="Label" parent="VBoxContainer" unique_id=1922327961]
+layout_mode = 2
+text = "Power"
+
+[node name="Power" type="HSlider" parent="VBoxContainer" unique_id=1201713169]
+layout_mode = 2
+min_value = 1.5
+max_value = 3.0
+step = 0.0
+value = 2.0
+
+[node name="Color1Label" type="Label" parent="VBoxContainer" unique_id=688498061]
+layout_mode = 2
+text = "Color1"
+
+[node name="Color1" type="HBoxContainer" parent="VBoxContainer" unique_id=1961823833]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="R2" type="Label" parent="VBoxContainer/Color1" unique_id=1236573749]
+layout_mode = 2
+text = "R"
+
+[node name="R" type="HSlider" parent="VBoxContainer/Color1" unique_id=180344363]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="G2" type="Label" parent="VBoxContainer/Color1" unique_id=716981074]
+layout_mode = 2
+text = "G"
+
+[node name="G" type="HSlider" parent="VBoxContainer/Color1" unique_id=398993221]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="B2" type="Label" parent="VBoxContainer/Color1" unique_id=1835974531]
+layout_mode = 2
+text = "B"
+
+[node name="B" type="HSlider" parent="VBoxContainer/Color1" unique_id=475518824]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+value = 1.0
+
+[node name="Color2Label" type="Label" parent="VBoxContainer" unique_id=259947334]
+layout_mode = 2
+text = "Color2"
+
+[node name="Color2" type="HBoxContainer" parent="VBoxContainer" unique_id=1120417393]
+layout_mode = 2
+
+[node name="R3" type="Label" parent="VBoxContainer/Color2" unique_id=2109127381]
+layout_mode = 2
+text = "R"
+
+[node name="R" type="HSlider" parent="VBoxContainer/Color2" unique_id=1797716548]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+
+[node name="G3" type="Label" parent="VBoxContainer/Color2" unique_id=475325860]
+layout_mode = 2
+text = "G"
+
+[node name="G" type="HSlider" parent="VBoxContainer/Color2" unique_id=60225511]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+
+[node name="B3" type="Label" parent="VBoxContainer/Color2" unique_id=177758195]
+layout_mode = 2
+text = "B"
+
+[node name="B" type="HSlider" parent="VBoxContainer/Color2" unique_id=2073416074]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+
+[node name="AccentLabel" type="Label" parent="VBoxContainer" unique_id=1514945135]
+layout_mode = 2
+text = "Accent"
+
+[node name="Accent" type="HBoxContainer" parent="VBoxContainer" unique_id=794609700]
+layout_mode = 2
+
+[node name="R5" type="Label" parent="VBoxContainer/Accent" unique_id=1337776623]
+layout_mode = 2
+text = "R"
+
+[node name="R" type="HSlider" parent="VBoxContainer/Accent" unique_id=162000849]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+value = 0.5
+
+[node name="G5" type="Label" parent="VBoxContainer/Accent" unique_id=716413175]
+layout_mode = 2
+text = "G"
+
+[node name="G" type="HSlider" parent="VBoxContainer/Accent" unique_id=1387695349]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+
+[node name="B5" type="Label" parent="VBoxContainer/Accent" unique_id=1208786218]
+layout_mode = 2
+text = "B"
+
+[node name="B" type="HSlider" parent="VBoxContainer/Accent" unique_id=796723597]
+layout_mode = 2
+size_flags_horizontal = 3
+max_value = 1.0
+step = 0.0
+value = 0.5
+
+[node name="IntensityLabel" type="Label" parent="VBoxContainer" unique_id=2096028320]
+layout_mode = 2
+text = "Intensity"
+
+[node name="Intensity" type="HSlider" parent="VBoxContainer" unique_id=900413438]
+layout_mode = 2
+max_value = 10.0
+step = 0.0
+value = 5.0
+
+[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="value_changed" from="VBoxContainer/Iterations" to="." method="_on_iterations_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Power" to="." method="_on_power_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color1/R" to="." method="_on_color1_r_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color1/G" to="." method="_on_color1_g_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color1/B" to="." method="_on_color1_b_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color2/R" to="." method="_on_color2_r_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color2/G" to="." method="_on_color2_g_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Color2/B" to="." method="_on_color2_b_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Accent/R" to="." method="_on_accent_r_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Accent/G" to="." method="_on_accent_g_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Accent/B" to="." method="_on_accent_b_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/Intensity" to="." method="_on_intensity_value_changed"]

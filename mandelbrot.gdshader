@@ -1,28 +1,29 @@
 shader_type canvas_item;
 
-uniform float zoom = 4 ;
-uniform float offset_x = 0.43;
-uniform float offset_y = 0.381;
+uniform float zoom = 4;
+uniform float power = 2;
+uniform vec2 offset = vec2(0, 0);
+uniform vec4 color1 = vec4(1, 1, 1, 1);
+uniform vec4 color2 = vec4(0, 0, 0, 1);
+uniform vec4 accent = vec4(0.5, 0, 0.5, 1);
+uniform float accent_intensity = 5;
+uniform int max_iterations = 100;
 
 void fragment() {
 	// Called for every pixel the material is visible on.
 	vec2 uv = UV - 0.5; 
 	vec2 z = vec2(0);
-	vec2 c = uv * zoom + vec2(offset_x, offset_y);
+	vec2 c = uv * zoom + offset;
 	float iterations = 0.0;
-	int max_iterations = 100;
 	
 	for (int i = 0; i < max_iterations; i++) {
-		z = vec2(z.x * z.x - z.y * z.y, 2.0 * z.x * z.y) + c;
-		if (length(z) > 2.0) {
+		z = vec2(z.x * z.x - z.y * z.y, power * z.x * z.y) + c;
+		if (length(z) > 3.0) {
 			break;
 		}
 		iterations++;
 	}
-	float color = iterations / float(max_iterations);
-	vec4 color1 = vec4(pow(color, 2), pow(color * .3, 0.5), color, 1);
-	vec4 color2 = vec4(pow(color, 0.5), pow(color * 4.0, 0.2), color, 1);
-	COLOR = mix(color1, color2, 0);
+	COLOR = mix(mix(color1, accent, iterations / float(max_iterations) * accent_intensity), color2, iterations / float(max_iterations));
 }
 
 //void light() {

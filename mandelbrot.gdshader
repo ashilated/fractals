@@ -20,7 +20,9 @@ void fragment() {
 		iterations++;
 	}
 	float color = iterations / float(max_iterations);
-	COLOR = vec4(pow(color, 2), pow(color * .3, 0.5), color, 1);
+	vec4 color1 = vec4(pow(color, 2), pow(color * .3, 0.5), color, 1);
+	vec4 color2 = vec4(pow(color, 0.5), pow(color * 4.0, 0.2), color, 1);
+	COLOR = mix(color1, color2, 0);
 }
 
 //void light() {

@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_pressed("left"):
-		current_pos -= last_mouse_pos - get_global_mouse_position()
+		current_pos = last_mouse_pos - get_global_mouse_position()
 		last_mouse_pos = get_global_mouse_position()
 		print(var_to_str(current_pos.x / 1152) + " " + var_to_str(current_pos.y / 648))
 		

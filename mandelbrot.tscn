@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://cesx7kv3qr7uy"]
+
+[ext_resource type="Shader" uid="uid://db17wy7hbs6kw" path="res://mandelbrot.gdshader" id="1_hh24k"]
+[ext_resource type="Script" uid="uid://ctl80q3g50kl5" path="res://mandelbrot.gd" id="1_mosox"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hh24k"]
+shader = ExtResource("1_hh24k")
+shader_parameter/zoom = 4.0
+shader_parameter/offset_x = 0.43
+shader_parameter/offset_y = 0.381
+
+[node name="Node2D" type="Node2D" unique_id=230819892]
+script = ExtResource("1_mosox")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1504786073]
+material = SubResource("ShaderMaterial_hh24k")
+offset_top = -319.99994
+offset_right = 40.0
+offset_bottom = -279.99994
+scale = Vector2(40, 40)

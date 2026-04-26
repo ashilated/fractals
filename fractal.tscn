@@ -1,41 +1,37 @@
 [gd_scene format=3 uid="uid://cesx7kv3qr7uy"]
 
-[ext_resource type="Shader" uid="uid://db17wy7hbs6kw" path="res://mandelbrot.gdshader" id="1_hh24k"]
-[ext_resource type="Script" uid="uid://ctl80q3g50kl5" path="res://mandelbrot.gd" id="1_mosox"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hh24k"]
-shader = ExtResource("1_hh24k")
-shader_parameter/zoom = 4.0
-shader_parameter/power = 2.0
-shader_parameter/offset = Vector2(0, 0)
-shader_parameter/color1 = Vector4(0.9, 0.3, 0.8, 1)
-shader_parameter/color2 = Vector4(0, 0.8, 0.1, 1)
-shader_parameter/accent = Vector4(0.5, 0, 0.5, 1)
-shader_parameter/accent_intensity = 5.0
-shader_parameter/max_iterations = 100
+[ext_resource type="Script" uid="uid://ctl80q3g50kl5" path="res://fractal.gd" id="1_o3htp"]
+[ext_resource type="Material" uid="uid://cdw4umbpaumgd" path="res://mandelbrot.tres" id="2_o3htp"]
 
 [node name="Node2D" type="Node2D" unique_id=230819892]
-script = ExtResource("1_mosox")
+script = ExtResource("1_o3htp")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1504786073]
-material = SubResource("ShaderMaterial_hh24k")
+material = ExtResource("2_o3htp")
 offset_left = 200.0
 offset_top = -500.0
 offset_right = 240.00002
 offset_bottom = -460.0
 scale = Vector2(40, 40)
 
-[node name="Control" type="Control" parent="." unique_id=1825050597]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2015688686]
 offset_right = 200.0
 offset_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="TypeLabel" type="Label" parent="VBoxContainer" unique_id=1074048549]
+layout_mode = 2
+text = "Fractal"
+
+[node name="Type" type="OptionButton" parent="VBoxContainer" unique_id=1827206776]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "mandelbrot"
+popup/item_0/id = 0
+popup/item_1/text = "julia"
+popup/item_1/id = 1
 
 [node name="IterationsLabel" type="Label" parent="VBoxContainer" unique_id=1437591401]
 layout_mode = 2
@@ -54,10 +50,52 @@ text = "Power"
 
 [node name="Power" type="HSlider" parent="VBoxContainer" unique_id=1201713169]
 layout_mode = 2
-min_value = 1.5
-max_value = 3.0
-step = 0.0
+max_value = 10.0
+step = 0.2
 value = 2.0
+tick_count = 11
+
+[node name="JuliaOnly" type="Control" parent="VBoxContainer" unique_id=1825050597]
+visible = false
+custom_minimum_size = Vector2(0, 40.945)
+layout_mode = 2
+
+[node name="CLabel" type="Label" parent="VBoxContainer/JuliaOnly" unique_id=1517066671]
+layout_mode = 0
+offset_right = 11.0
+offset_bottom = 23.0
+text = "C"
+
+[node name="C" type="HBoxContainer" parent="VBoxContainer/JuliaOnly" unique_id=483905580]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 0
+offset_top = 21.215
+offset_right = 200.0
+offset_bottom = 44.215004
+
+[node name="XLabel" type="Label" parent="VBoxContainer/JuliaOnly/C" unique_id=1458433687]
+layout_mode = 2
+text = "X"
+
+[node name="X" type="HSlider" parent="VBoxContainer/JuliaOnly/C" unique_id=1034370968]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+value = -0.74
+
+[node name="YLabel" type="Label" parent="VBoxContainer/JuliaOnly/C" unique_id=1997468144]
+layout_mode = 2
+text = "Y"
+
+[node name="Y" type="HSlider" parent="VBoxContainer/JuliaOnly/C" unique_id=1108044964]
+layout_mode = 2
+size_flags_horizontal = 3
+min_value = -1.0
+max_value = 1.0
+step = 0.0
+value = 0.13
 
 [node name="Color1Label" type="Label" parent="VBoxContainer" unique_id=688498061]
 layout_mode = 2
@@ -187,8 +225,11 @@ step = 0.0
 value = 5.0
 
 [connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[connection signal="item_selected" from="VBoxContainer/Type" to="." method="_on_type_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/Iterations" to="." method="_on_iterations_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Power" to="." method="_on_power_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/JuliaOnly/C/X" to="." method="_on_c_x_value_changed"]
+[connection signal="value_changed" from="VBoxContainer/JuliaOnly/C/Y" to="." method="_on_c_y_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Color1/R" to="." method="_on_color1_r_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Color1/G" to="." method="_on_color1_g_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Color1/B" to="." method="_on_color1_b_value_changed"]

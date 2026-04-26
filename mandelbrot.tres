@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cdw4umbpaumgd"]
+
+[ext_resource type="Shader" uid="uid://db17wy7hbs6kw" path="res://mandelbrot.gdshader" id="1_iarh2"]
+
+[resource]
+shader = ExtResource("1_iarh2")
+shader_parameter/zoom = 4.0
+shader_parameter/power = 2.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/color1 = Vector4(0.9, 0.3, 0.8, 1)
+shader_parameter/color2 = Vector4(0, 0.8, 0.1, 1)
+shader_parameter/accent = Vector4(0.5, 0, 0.5, 1)
+shader_parameter/accent_intensity = 5.0
+shader_parameter/max_iterations = 100

@@ -4,10 +4,18 @@ var zoom: float = 4
 var dragging: bool = false
 var last_mouse_pos: Vector2 = Vector2(0, 0)
 var offset: Vector2 = Vector2(0, 0)
+@onready var c: Vector2 = Vector2($VBoxContainer/JuliaOnly/C/X.value, $VBoxContainer/JuliaOnly/C/Y.value)
 @onready var color1 = Vector4($VBoxContainer/Color1/R.value, $VBoxContainer/Color1/G.value, $VBoxContainer/Color1/B.value, 1)
 @onready var color2 = Vector4($VBoxContainer/Color2/R.value, $VBoxContainer/Color2/G.value, $VBoxContainer/Color2/B.value, 1)
 @onready var accent = Vector4($VBoxContainer/Accent/R.value, $VBoxContainer/Accent/G.value, $VBoxContainer/Accent/B.value, 1)
 @onready var shader: ShaderMaterial = $ColorRect.material
+
+@onready var julia: Control = $VBoxContainer/JuliaOnly
+
+@onready var fractals = [
+	load("res://mandelbrot.tres"),
+	load("res://julia.tres")
+]
 
 func _ready() -> void:
 	shader.set_shader_parameter("color1", color1)
@@ -34,6 +42,12 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 		offset -= delta * 0.01 * zoom
 		shader.set_shader_parameter("offset", offset)
 
+func _on_type_item_selected(index: int) -> void:
+	shader = fractals[index]
+	$ColorRect.material = shader
+	_ready()
+	if index == 1: julia.show()
+	else: julia.hide()
 
 func _on_iterations_value_changed(value: float) -> void:
 	shader.set_shader_parameter("max_iterations", value)
@@ -83,3 +97,14 @@ func _on_accent_b_value_changed(value: float) -> void:
 
 func _on_intensity_value_changed(value: float) -> void:
 	shader.set_shader_parameter("accent_intensity", value)
+	
+
+# Julia set only 
+func _on_c_x_value_changed(value: float) -> void:
+	c.x = value
+	shader.set_shader_parameter("c", c)
+
+
+func _on_c_y_value_changed(value: float) -> void:
+	c.y = value
+	shader.set_shader_parameter("c", c)

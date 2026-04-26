@@ -1,0 +1,14 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b2irehathhcoo"]
+
+[ext_resource type="Shader" uid="uid://4jwt2luw2o4k" path="res://julia.gdshader" id="1_6t0l8"]
+
+[resource]
+shader = ExtResource("1_6t0l8")
+shader_parameter/zoom = 0.2
+shader_parameter/power = 2.0
+shader_parameter/offset = Vector2(-0.5, 0)
+shader_parameter/color1 = Vector4(0.8, 0.2, 0.9, 1)
+shader_parameter/color2 = Vector4(0, 0, 0, 1)
+shader_parameter/accent = Vector4(0.5, 0, 0.5, 1)
+shader_parameter/accent_intensity = 2.0
+shader_parameter/max_iterations = 100

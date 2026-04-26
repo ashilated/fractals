@@ -27,7 +27,11 @@ void fragment() {
 		}
 		iterations++;
 	}
-	COLOR = mix(mix(color1, accent, iterations / float(max_iterations) * accent_intensity), color2, iterations / float(max_iterations));
+	//if (iterations > 40.0) {
+	//	COLOR = mix(mix(vec4(1,0,0,1), accent, iterations / float(max_iterations) * accent_intensity), color2, iterations / float(max_iterations));
+	//} else {
+		COLOR = mix(mix(color1, accent, iterations / float(max_iterations) * accent_intensity), color2, iterations / float(max_iterations));
+	//}
 }
 
 //void light() {

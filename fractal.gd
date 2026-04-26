@@ -18,9 +18,14 @@ var offset: Vector2 = Vector2(0, 0)
 ]
 
 func _ready() -> void:
+	zoom = 4
 	shader.set_shader_parameter("color1", color1)
 	shader.set_shader_parameter("color2", color2)
 	shader.set_shader_parameter("accent", accent)
+	_on_power_value_changed(2)
+	$VBoxContainer/Power.value = 2
+	_on_iterations_value_changed(100)
+	$VBoxContainer/Iterations.value = 100
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_released("scroll_up"):

@@ -9,9 +9,9 @@ script = ExtResource("1_o3htp")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1504786073]
 material = ExtResource("2_o3htp")
 offset_left = 200.0
-offset_top = -500.0
-offset_right = 240.00002
-offset_bottom = -460.0
+offset_top = -961.0
+offset_right = 260.25003
+offset_bottom = -900.75
 scale = Vector2(40, 40)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2015688686]
@@ -19,10 +19,6 @@ offset_right = 200.0
 offset_bottom = 16.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-
-[node name="TypeLabel" type="Label" parent="VBoxContainer" unique_id=1074048549]
-layout_mode = 2
-text = "Fractal"
 
 [node name="Type" type="OptionButton" parent="VBoxContainer" unique_id=1827206776]
 layout_mode = 2
@@ -114,7 +110,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.0
-value = 1.0
 
 [node name="G2" type="Label" parent="VBoxContainer/Color1" unique_id=716981074]
 layout_mode = 2
@@ -125,7 +120,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.0
-value = 1.0
 
 [node name="B2" type="Label" parent="VBoxContainer/Color1" unique_id=1835974531]
 layout_mode = 2
@@ -136,7 +130,6 @@ layout_mode = 2
 size_flags_horizontal = 3
 max_value = 1.0
 step = 0.0
-value = 1.0
 
 [node name="Color2Label" type="Label" parent="VBoxContainer" unique_id=259947334]
 layout_mode = 2

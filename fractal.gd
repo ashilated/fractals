@@ -8,7 +8,7 @@ var offset: Vector2 = Vector2(0, 0)
 @onready var color1 = Vector4($VBoxContainer/Color1/R.value, $VBoxContainer/Color1/G.value, $VBoxContainer/Color1/B.value, 1)
 @onready var color2 = Vector4($VBoxContainer/Color2/R.value, $VBoxContainer/Color2/G.value, $VBoxContainer/Color2/B.value, 1)
 @onready var accent = Vector4($VBoxContainer/Accent/R.value, $VBoxContainer/Accent/G.value, $VBoxContainer/Accent/B.value, 1)
-@onready var shader: ShaderMaterial = $ColorRect.material
+@onready var shader: ShaderMaterial = $SubViewportContainer/SubViewport/ColorRect.material
 
 @onready var julia: Control = $VBoxContainer/JuliaOnly
 
@@ -16,6 +16,24 @@ var offset: Vector2 = Vector2(0, 0)
 	load("res://mandelbrot.tres"),
 	load("res://julia.tres")
 ]
+
+func _on_save_button_pressed() -> void:
+	await RenderingServer.frame_post_draw
+	
+	var img = $SubViewportContainer/SubViewport.get_texture().get_image()
+	var filename = var_to_str(Time.get_unix_time_from_system()) + ".png"
+	if OS.has_feature("web"):
+		var base64 = Marshalls.raw_to_base64(img.save_png_to_buffer())
+		JavaScriptBridge.eval("""
+			var a = document.createElement("a")
+			a.href = "data:image/png;base64," + "{image}"
+			a.download = "{name}"
+			a.click()
+		""".format({"image": base64, "name": filename}))
+		
+	else:
+		img.save_png(OS.get_system_dir(OS.SYSTEM_DIR_DESKTOP) + "/" + filename)
+
 
 func _ready() -> void:
 	zoom = 4
@@ -49,7 +67,7 @@ func _on_color_rect_gui_input(event: InputEvent) -> void:
 
 func _on_type_item_selected(index: int) -> void:
 	shader = fractals[index]
-	$ColorRect.material = shader
+	$SubViewportContainer/SubViewport/ColorRect.material = shader
 	_ready()
 	if index == 1: julia.show()
 	else: julia.hide()
@@ -108,7 +126,6 @@ func _on_intensity_value_changed(value: float) -> void:
 func _on_c_x_value_changed(value: float) -> void:
 	c.x = value
 	shader.set_shader_parameter("c", c)
-
 
 func _on_c_y_value_changed(value: float) -> void:
 	c.y = value

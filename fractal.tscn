@@ -6,12 +6,19 @@
 [node name="Node2D" type="Node2D" unique_id=230819892]
 script = ExtResource("1_o3htp")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1504786073]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="." unique_id=320529558]
+offset_right = 1440.0
+offset_bottom = 1080.0
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer" unique_id=2112959793]
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="ColorRect" type="ColorRect" parent="SubViewportContainer/SubViewport" unique_id=1504786073]
 material = ExtResource("2_o3htp")
-offset_left = 200.0
-offset_top = -961.0
-offset_right = 260.25003
-offset_bottom = -900.75
+offset_top = -650.0
+offset_right = 60.25
+offset_bottom = -589.75
 scale = Vector2(40, 40)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2015688686]
@@ -31,6 +38,8 @@ popup/item_1/id = 1
 
 [node name="IterationsLabel" type="Label" parent="VBoxContainer" unique_id=1437591401]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Iterations"
 
 [node name="Iterations" type="HSlider" parent="VBoxContainer" unique_id=744405679]
@@ -42,6 +51,8 @@ value = 100.0
 
 [node name="PowerLabel" type="Label" parent="VBoxContainer" unique_id=1922327961]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Power"
 
 [node name="Power" type="HSlider" parent="VBoxContainer" unique_id=1201713169]
@@ -60,6 +71,8 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 11.0
 offset_bottom = 23.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "C"
 
 [node name="C" type="HBoxContainer" parent="VBoxContainer/JuliaOnly" unique_id=483905580]
@@ -71,6 +84,8 @@ offset_bottom = 44.215004
 
 [node name="XLabel" type="Label" parent="VBoxContainer/JuliaOnly/C" unique_id=1458433687]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "X"
 
 [node name="X" type="HSlider" parent="VBoxContainer/JuliaOnly/C" unique_id=1034370968]
@@ -83,6 +98,8 @@ value = -0.74
 
 [node name="YLabel" type="Label" parent="VBoxContainer/JuliaOnly/C" unique_id=1997468144]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Y"
 
 [node name="Y" type="HSlider" parent="VBoxContainer/JuliaOnly/C" unique_id=1108044964]
@@ -95,6 +112,8 @@ value = 0.13
 
 [node name="Color1Label" type="Label" parent="VBoxContainer" unique_id=688498061]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Color1"
 
 [node name="Color1" type="HBoxContainer" parent="VBoxContainer" unique_id=1961823833]
@@ -103,6 +122,8 @@ layout_mode = 2
 
 [node name="R2" type="Label" parent="VBoxContainer/Color1" unique_id=1236573749]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "R"
 
 [node name="R" type="HSlider" parent="VBoxContainer/Color1" unique_id=180344363]
@@ -113,6 +134,8 @@ step = 0.0
 
 [node name="G2" type="Label" parent="VBoxContainer/Color1" unique_id=716981074]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "G"
 
 [node name="G" type="HSlider" parent="VBoxContainer/Color1" unique_id=398993221]
@@ -123,6 +146,8 @@ step = 0.0
 
 [node name="B2" type="Label" parent="VBoxContainer/Color1" unique_id=1835974531]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "B"
 
 [node name="B" type="HSlider" parent="VBoxContainer/Color1" unique_id=475518824]
@@ -133,6 +158,8 @@ step = 0.0
 
 [node name="Color2Label" type="Label" parent="VBoxContainer" unique_id=259947334]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Color2"
 
 [node name="Color2" type="HBoxContainer" parent="VBoxContainer" unique_id=1120417393]
@@ -140,6 +167,8 @@ layout_mode = 2
 
 [node name="R3" type="Label" parent="VBoxContainer/Color2" unique_id=2109127381]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "R"
 
 [node name="R" type="HSlider" parent="VBoxContainer/Color2" unique_id=1797716548]
@@ -150,6 +179,8 @@ step = 0.0
 
 [node name="G3" type="Label" parent="VBoxContainer/Color2" unique_id=475325860]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "G"
 
 [node name="G" type="HSlider" parent="VBoxContainer/Color2" unique_id=60225511]
@@ -160,6 +191,8 @@ step = 0.0
 
 [node name="B3" type="Label" parent="VBoxContainer/Color2" unique_id=177758195]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "B"
 
 [node name="B" type="HSlider" parent="VBoxContainer/Color2" unique_id=2073416074]
@@ -170,6 +203,8 @@ step = 0.0
 
 [node name="AccentLabel" type="Label" parent="VBoxContainer" unique_id=1514945135]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Accent"
 
 [node name="Accent" type="HBoxContainer" parent="VBoxContainer" unique_id=794609700]
@@ -177,6 +212,8 @@ layout_mode = 2
 
 [node name="R5" type="Label" parent="VBoxContainer/Accent" unique_id=1337776623]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "R"
 
 [node name="R" type="HSlider" parent="VBoxContainer/Accent" unique_id=162000849]
@@ -188,6 +225,8 @@ value = 0.5
 
 [node name="G5" type="Label" parent="VBoxContainer/Accent" unique_id=716413175]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "G"
 
 [node name="G" type="HSlider" parent="VBoxContainer/Accent" unique_id=1387695349]
@@ -198,6 +237,8 @@ step = 0.0
 
 [node name="B5" type="Label" parent="VBoxContainer/Accent" unique_id=1208786218]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "B"
 
 [node name="B" type="HSlider" parent="VBoxContainer/Accent" unique_id=796723597]
@@ -209,6 +250,8 @@ value = 0.5
 
 [node name="IntensityLabel" type="Label" parent="VBoxContainer" unique_id=2096028320]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.6627451)
+theme_override_constants/shadow_outline_size = 3
 text = "Intensity"
 
 [node name="Intensity" type="HSlider" parent="VBoxContainer" unique_id=900413438]
@@ -217,7 +260,11 @@ max_value = 10.0
 step = 0.0
 value = 5.0
 
-[connection signal="gui_input" from="ColorRect" to="." method="_on_color_rect_gui_input"]
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=679349775]
+layout_mode = 2
+text = "Save to File"
+
+[connection signal="gui_input" from="SubViewportContainer/SubViewport/ColorRect" to="." method="_on_color_rect_gui_input"]
 [connection signal="item_selected" from="VBoxContainer/Type" to="." method="_on_type_item_selected"]
 [connection signal="value_changed" from="VBoxContainer/Iterations" to="." method="_on_iterations_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Power" to="." method="_on_power_value_changed"]
@@ -233,3 +280,4 @@ value = 5.0
 [connection signal="value_changed" from="VBoxContainer/Accent/G" to="." method="_on_accent_g_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Accent/B" to="." method="_on_accent_b_value_changed"]
 [connection signal="value_changed" from="VBoxContainer/Intensity" to="." method="_on_intensity_value_changed"]
+[connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_save_button_pressed"]
